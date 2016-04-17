@@ -1,0 +1,94 @@
+﻿@using GasMeter_MS.Models
+@model LoginViewModel
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<!--[if IE 8]> <html lang="en" class="ie8 no-js"> <![endif]-->
+<!--[if IE 9]> <html lang="en" class="ie9 no-js"> <![endif]-->
+<!--[if !IE]><!-->
+<html lang="en" class="no-js">
+<!--<![endif]-->
+<!-- BEGIN HEAD -->
+<head>
+    <meta charset="utf-8" />
+    <title>登录-物联网燃气表管理系统</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta content="width=device-width, initial-scale=1" name="viewport" />
+    @Styles.Render("~/Content/commonCss")
+    @Styles.Render("~/Content/layoutCss")
+    @Scripts.Render("~/bundles/modernizr")
+    <link href="~/Content/pages/login2.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/css/custom.css" rel="stylesheet" type="text/css" />
+    <link rel="shortcut icon" href="~/content/favicon.ico" />
+</head>
+<body class="login">
+    <!-- BEGIN SIDEBAR TOGGLER BUTTON -->
+    <div class="menu-toggler sidebar-toggler">
+    </div>
+    <!-- END SIDEBAR TOGGLER BUTTON -->
+    <!-- BEGIN LOGO -->
+    <div class="logo">
+        <a href="index.html">
+            <img src="~/Content/img/logo.png" style="height: 27px;" alt="" />
+        </a>
+    </div>
+    <!-- BEGIN LOGIN -->
+    <div class="content">
+        <!-- BEGIN LOGIN FORM -->
+        @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "login-form", role = "form" }))
+        {
+            @Html.AntiForgeryToken()
+            <div class="form-title text-center">
+                <span class="form-title">欢迎使用</span>
+            </div>
+            <div class="alert alert-danger display-hide">
+                <button class="close" data-close="alert"></button>
+                <span>
+                    输入用户名和密码
+                </span>
+            </div>
+            <div class="form-group">
+                <!--ie8, ie9 does not support html5 placeholder, so we just show field title for that-->
+                <label class="control-label visible-ie8 visible-ie9">用户名</label>
+                @Html.PasswordFor(m => m.Password, new { @class = "form-control form-control-solid placeholder-no-fix", autocomplete = "off", placeholder = "用户名", name = "username" })
+            </div>
+            <div class="form-group">
+                <label class="control-label visible-ie8 visible-ie9">密码</label>
+                @Html.PasswordFor(m => m.Password, new { @class = "form-control form-control-solid placeholder-no-fix", autocomplete = "off", placeholder = "密码", name = "password" })
+            </div>
+            <div class="form-actions">
+                <button type="submit" class="btn btn-primary btn-block uppercase">登录</button>
+            </div>
+            <div class="form-actions">
+                <div class="pull-left">
+                    <label class="rememberme check">
+                        @Html.CheckBoxFor(m => m.RememberMe)
+                        @Html.LabelFor(m => m.RememberMe)
+                    </label>
+                </div>
+            </div>
+            <div class="create-account">
+                <p>
+                    @Html.ActionLink("注册为新用户", "Register")
+                </p>
+            </div>
+        }
+    </div>
+    <!-- END LOGIN FORM -->
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/commonJs")
+    <script src="~/content/pages/scripts/login.js" type="text/javascript"></script>
+    <script src="~/Content/js/jquery.validate.min.js"></script>
+    <script>
+        jQuery(document).ready(function () {
+            Metronic.init(); // init metronic core components
+            Layout.init(); // init current layout
+            Login.init();
+          //  Demo.init();
+        });
+    </script>
+    <!-- END JAVASCRIPTS -->
+</body>
+<!-- END BODY -->
+</html> 

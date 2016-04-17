@@ -1,0 +1,418 @@
+﻿<!DOCTYPE html>
+<!--[if IE 8]> <html lang="en" class="ie8 no-js"> <![endif]-->
+<!--[if IE 9]> <html lang="en" class="ie9 no-js"> <![endif]-->
+<!--[if !IE]><!-->
+<html lang="en" class="no-js">
+<!--<![endif]-->
+<!-- BEGIN HEAD -->
+<head>
+    <meta charset="utf-8" />
+    <title>@ViewBag.Title-物联网燃气表管理系统</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta content="width=device-width, initial-scale=1" name="viewport" />
+    @Styles.Render("~/Content/commonCss")
+    @Styles.Render("~/Content/layoutCss")
+    @Scripts.Render("~/bundles/modernizr")
+    @RenderSection("css", required: false)
+    <link rel="shortcut icon" href="~/content/favicon.ico" />
+</head>
+<body class="page-header-fixed page-quick-sidebar-over-content page-style-square">
+    <!-- BEGIN HEADER -->
+    <div class="page-header navbar navbar-fixed-top">
+        <!-- BEGIN HEADER INNER -->
+        <div class="page-header-inner">
+            <!-- BEGIN LOGO -->
+            <div class="page-logo">
+                <a href="index.html">
+                    <img src="~/content/img/logo.png" alt="logo" class="logo-default" />
+                </a>
+            </div>
+            <!-- END LOGO -->
+            <!-- BEGIN RESPONSIVE MENU TOGGLER -->
+            <a href="javascript:;" class="menu-toggler responsive-toggler m-b" data-toggle="collapse" data-target=".navbar-collapse">
+            </a>
+            <!-- END RESPONSIVE MENU TOGGLER -->
+            <!-- BEGIN TOP NAVIGATION MENU -->
+            <div class="top-menu">
+                <ul class="nav navbar-nav pull-right">
+                    <!-- BEGIN USER LOGIN DROPDOWN -->
+                    <!-- DOC: Apply "dropdown-dark" class after below "dropdown-extended" to change the dropdown styte -->
+                    <li class="dropdown dropdown-user">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
+                            <img alt="" class="img-circle" src="~/content/img/photo2.jpg" />
+                            <span class="username username-hide-on-mobile">
+                                员工1
+                            </span>
+                            <i class="fa fa-angle-down"></i>
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-default">
+                            <li>
+                                <a href="page_calendar.html">
+                                    <i class="icon-calendar"></i>切换用户
+                                </a>
+                            </li>
+                            <li>
+                                <a href="~/account/login">
+                                    <i class="icon-user"></i>注销
+                                </a>
+                            </li>
+
+                        </ul>
+                    </li>
+                    <!-- END USER LOGIN DROPDOWN -->
+                </ul>
+            </div>
+            <!-- END TOP NAVIGATION MENU -->
+        </div>
+        <!-- END HEADER INNER -->
+    </div>
+    <!-- END HEADER -->
+    <div class="clearfix">
+    </div>
+    <!-- BEGIN CONTAINER -->
+    <div class="page-container">
+        <!-- BEGIN SIDEBAR -->
+        <div class="page-sidebar-wrapper">
+            <div class="page-sidebar navbar-collapse collapse">
+                <ul class="page-sidebar-menu" data-keep-expanded="false" data-auto-scroll="true" data-slide-speed="200">
+                    <li class="sidebar-toggler-wrapper">
+                        <div class="sidebar-toggler m-b">
+                        </div>
+                    </li>
+                    <li class="start active open">
+                        <a href="javascript:;">
+                            <i class="icon-settings"></i>
+                            <span class="title">系统设置</span>
+                            <span class="selected"></span>
+                            <span class="arrow open"></span>
+                        </a>
+                        <ul class="sub-menu">
+                            <li class="active">
+                                <a href="index.html">
+                                    <i class="icon-calendar"></i>
+                                    基本配置
+                                </a>
+                            </li>
+                            <li>
+                                <a href="index_2.html">
+                                    <i class="icon-calendar"></i>
+                                    初始化数据
+                                </a>
+                            </li>
+                            <li>
+                                <a href="index_3.html">
+                                    <i class="icon-calendar"></i>
+                                    组织机构
+                                </a>
+                            </li>
+                            <li class="active">
+                                <a href="index.html">
+                                    <i class="icon-calendar"></i>
+                                    地址管理
+                                </a>
+                            </li>
+                            <li>
+                                <a href="index_2.html">
+                                    <i class="icon-calendar"></i>
+                                    用户管理
+                                </a>
+                            </li>
+                            <li>
+                                <a href="index_3.html">
+                                    <i class="icon-calendar"></i>
+                                    角色权限
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="javascript:;">
+                            <i class="icon-tag"></i>
+                            <span class="title">基本信息</span>
+                            <span class="arrow "></span>
+                        </a>
+                        <ul class="sub-menu">
+                            <li>
+                                <a href="ecommerce_index.html">
+                                    <i class="icon-calendar"></i>
+                                    气价信息
+                                </a>
+                            </li>
+                            <li>
+                                <a href="ecommerce_orders.html">
+                                    <i class="icon-calendar"></i>
+                                    气表参数
+                                </a>
+                            </li>
+                            <li>
+                                <a href="ecommerce_orders_view.html">
+                                    <i class="icon-calendar"></i>
+                                    气表信息
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="javascript:;">
+                            <i class="icon-user"></i>
+                            <span class="title">客户信息管理</span>
+                            <span class="arrow "></span>
+                        </a>
+                        <ul class="sub-menu">
+                            <li>
+                                <a href="layout_horizontal_sidebar_menu.html">
+                                    <i class="icon-calendar"></i>
+                                    客户报装建档
+                                </a>
+                            </li>
+                            <li>
+                                <a href="index_horizontal_menu.html">
+                                    <i class="icon-calendar"></i>
+                                    集体报装建档
+                                </a>
+                            </li>
+                            <li>
+                                <a href="layout_horizontal_sidebar_menu.html">
+                                    <i class="icon-calendar"></i>
+                                    客户信息查询
+                                </a>
+                            </li>
+                            <li>
+                                <a href="index_horizontal_menu.html">
+                                    <i class="icon-calendar"></i>
+                                    停用
+                                </a>
+                            </li>
+                            <li>
+                                <a href="layout_horizontal_sidebar_menu.html">
+                                    <i class="icon-calendar"></i>
+                                    启用
+                                </a>
+                            </li>
+                            <li>
+                                <a href="index_horizontal_menu.html">
+                                    <i class="icon-calendar"></i>
+                                    过户
+                                </a>
+                            </li>
+                            <li>
+                                <a href="layout_horizontal_sidebar_menu.html">
+                                    <i class="icon-calendar"></i>
+                                    销户
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="javascript:;">
+                            <i class="icon-diamond"></i>
+                            <span class="title">收费管理</span>
+                            <span class="arrow "></span>
+                        </a>
+                        <ul class="sub-menu">
+                            <li>
+                                <a href="ui_general.html">
+                                    <i class="icon-calendar"></i>
+                                    售气管理
+                                </a>
+                            </li>
+                            <li>
+                                <a href="ui_buttons.html">
+                                    <i class="icon-calendar"></i>
+                                    退气
+                                </a>
+                            </li>
+                            <li>
+                                <a href="ui_icons.html">
+                                    <i class="icon-calendar"></i>
+                                    非换表补气
+                                </a>
+                            </li>
+                            <li>
+                                <a href="ui_colors.html">
+                                    <i class="icon-calendar"></i>
+                                    换表
+                                </a>
+                            </li>
+                            <li>
+                                <a href="ui_typography.html">
+                                    <i class="icon-calendar"></i>
+                                    修表
+                                </a>
+                            </li>
+                            <li>
+                                <a href="ui_tabs_accordions_navs.html">
+                                    <i class="icon-calendar"></i>
+                                    换卡
+                                </a>
+                            </li>
+                            <li>
+                                <a href="ui_tree.html">
+                                    <i class="icon-calendar"></i>
+                                    补卡
+                                </a>
+                            </li>
+                            <li>
+                                <a href="ui_blockui.html">
+                                    <i class="icon-calendar"></i>
+                                    气卡回收
+                                </a>
+                            </li>
+
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="javascript:;">
+                            <i class="icon-bar-chart"></i>
+                            <span class="title">报表管理</span>
+                            <span class="arrow "></span>
+                        </a>
+                        <ul class="sub-menu">
+                            <li>
+                                <a href="components_pickers.html">
+                                    <i class="icon-calendar"></i>
+                                    售气记录
+                                </a>
+                            </li>
+                            <li>
+                                <a href="components_dropdowns.html">
+                                    <i class="icon-calendar"></i>
+                                    错误上报记录
+                                </a>
+                            </li>
+                            <li>
+                                <a href="components_form_tools.html">
+                                    <i class="icon-calendar"></i>
+                                    气表上传记录
+                                </a>
+                            </li>
+                            <li>
+                                <a href="components_editors.html">
+                                    <i class="icon-calendar"></i>
+                                    指令记录
+                                </a>
+                            </li>
+                            <li>
+                                <a href="components_ion_sliders.html">
+                                    <i class="icon-calendar"></i>
+                                    退气记录
+                                </a>
+                            </li>
+                            <li>
+                                <a href="components_noui_sliders.html">
+                                    <i class="icon-calendar"></i>
+                                    补气记录
+                                </a>
+                            </li>
+                            <li>
+                                <a href="components_jqueryui_sliders.html">
+                                    <i class="icon-calendar"></i>
+                                    换表记录
+                                </a>
+                            </li>
+                            <li>
+                                <a href="components_knob_dials.html">
+                                    <i class="icon-calendar"></i>
+                                    换卡记录
+                                </a>
+                            </li>
+                            <li>
+                                <a href="components_editors.html">
+                                    <i class="icon-calendar"></i>
+                                    补卡记录
+                                </a>
+                            </li>
+                            <li>
+                                <a href="components_ion_sliders.html">
+                                    <i class="icon-calendar"></i>
+                                    气卡回收记录
+                                </a>
+                            </li>
+                            <li>
+                                <a href="components_noui_sliders.html">
+                                    <i class="icon-calendar"></i>
+                                    原客户信息记录
+                                </a>
+                            </li>
+                            <li>
+                                <a href="components_jqueryui_sliders.html">
+                                    <i class="icon-calendar"></i>
+                                    客户信息修改记录
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <i class="icon-calendar"></i>
+                                    客户停用记录
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+
+                </ul>
+                <!-- END SIDEBAR MENU -->
+            </div>
+        </div>
+        <!-- END SIDEBAR -->
+        <!-- BEGIN CONTENT -->
+        <div class="page-content-wrapper">
+            <div class="page-content">
+                <!-- BEGIN PAGE HEADER-->
+                <h3 class="page-title">
+                    系统设置 <small>基本配置</small>
+                </h3>
+                <div class="page-bar">
+                    <ul class="page-breadcrumb">
+                        <li>
+                            <i class="fa fa-home"></i>
+                            <a href="index.html">主页</a>
+                            <i class="fa fa-angle-right"></i>
+                        </li>
+                        <li>
+                            <a href="#">系统设置</a>
+                        </li>
+                    </ul>
+                </div>
+                <!-- END PAGE HEADER-->
+                <div class="clearfix">
+                </div>
+                <div class="row col-xs-12">
+                    @RenderBody()
+                </div>
+            </div>
+
+        </div>
+        <!-- END CONTAINER -->
+        <!-- BEGIN FOOTER -->
+        <div class="page-footer">
+            <div class="page-footer-inner">
+                @DateTime.Now.Year &copy; 物联网燃气表管理系统.
+            </div>
+            <div class="scroll-to-top">
+                <i class="icon-arrow-up"></i>
+            </div>
+        </div>
+        <!-- END FOOTER -->
+        <!--[if lt IE 9]>
+        <script src="../../assets/global/plugins/respond.min.js"></script>
+        <script src="../../assets/global/plugins/excanvas.min.js"></script>
+        <![endif]-->
+        @Scripts.Render("~/bundles/jquery")
+        @Scripts.Render("~/bundles/commonJs")
+        @RenderSection("scripts", required: false)
+        <!-- END PAGE LEVEL SCRIPTS -->
+        <script>
+            $(document).ready(function () {
+                Layout.init(); // init layout
+                QuickSidebar.init(); // init quick sidebar
+                Index.init();
+                $(".page-sidebar-menu").on("click", ".sub-menu li", function () {
+                    $(this).siblings("active").removeClass("active");
+                    $(this).addClass("active").closest().addClass("active");
+                });
+            });
+        </script>
+        <!-- END JAVASCRIPTS -->
+</body>
+<!-- END BODY -->
+</html>
