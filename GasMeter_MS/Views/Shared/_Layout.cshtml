@@ -23,7 +23,7 @@
         <div class="page-header-inner">
             <!-- BEGIN LOGO -->
             <div class="page-logo">
-                <a href="index.html">
+                <a href="~/gas">
                     <img src="~/content/img/logo.png" alt="logo" class="logo-default" />
                 </a>
             </div>
@@ -34,33 +34,15 @@
             <!-- END RESPONSIVE MENU TOGGLER -->
             <!-- BEGIN TOP NAVIGATION MENU -->
             <div class="top-menu">
-                <ul class="nav navbar-nav pull-right">
-                    <!-- BEGIN USER LOGIN DROPDOWN -->
-                    <!-- DOC: Apply "dropdown-dark" class after below "dropdown-extended" to change the dropdown styte -->
-                    <li class="dropdown dropdown-user">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
-                            <img alt="" class="img-circle" src="~/content/img/photo2.jpg" />
-                            <span class="username username-hide-on-mobile">
-                                员工1
-                            </span>
-                            <i class="fa fa-angle-down"></i>
-                        </a>
-                        <ul class="dropdown-menu dropdown-menu-default">
-                            <li>
-                                <a href="page_calendar.html">
-                                    <i class="icon-calendar"></i>切换用户
-                                </a>
-                            </li>
-                            <li>
-                                <a href="~/account/login">
-                                    <i class="icon-user"></i>注销
-                                </a>
-                            </li>
-
-                        </ul>
-                    </li>
-                    <!-- END USER LOGIN DROPDOWN -->
-                </ul>
+                @using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm" }))
+                {
+                    @Html.AntiForgeryToken()
+                    <ul class="nav navbar-nav pull-right">
+                        <!-- BEGIN USER LOGIN DROPDOWN -->
+                        @Html.Partial("_LoginPartial")
+                        <!-- END USER LOGIN DROPDOWN -->
+                    </ul>
+                }
             </div>
             <!-- END TOP NAVIGATION MENU -->
         </div>
@@ -79,7 +61,7 @@
                         <div class="sidebar-toggler m-b">
                         </div>
                     </li>
-                    <li class="start active open">
+                    <li data-controller="system">
                         <a href="javascript:;">
                             <i class="icon-settings"></i>
                             <span class="title">系统设置</span>
@@ -87,65 +69,65 @@
                             <span class="arrow open"></span>
                         </a>
                         <ul class="sub-menu">
-                            <li class="active">
-                                <a href="index.html">
+                            <li data-action="system.index">
+                                <a href="~/system/index">
                                     <i class="icon-calendar"></i>
                                     基本配置
                                 </a>
                             </li>
-                            <li>
-                                <a href="index_2.html">
+                            <li data-action="system.initdata">
+                                <a href="~/system/initdata">
                                     <i class="icon-calendar"></i>
                                     初始化数据
                                 </a>
                             </li>
-                            <li>
-                                <a href="index_3.html">
+                            <li data-action="system.branch">
+                                <a href="~/system/branch">
                                     <i class="icon-calendar"></i>
                                     组织机构
                                 </a>
                             </li>
-                            <li class="active">
-                                <a href="index.html">
+                            <li data-action="system.address">
+                                <a href="~/system/address">
                                     <i class="icon-calendar"></i>
                                     地址管理
                                 </a>
                             </li>
-                            <li>
-                                <a href="index_2.html">
+                            <li data-action="system.users">
+                                <a href="~/system/users">
                                     <i class="icon-calendar"></i>
                                     用户管理
                                 </a>
                             </li>
                             <li>
-                                <a href="index_3.html">
+                                <a href="#">
                                     <i class="icon-calendar"></i>
                                     角色权限
                                 </a>
                             </li>
                         </ul>
                     </li>
-                    <li>
+                    <li data-controller="baseinfo">
                         <a href="javascript:;">
                             <i class="icon-tag"></i>
                             <span class="title">基本信息</span>
                             <span class="arrow "></span>
                         </a>
                         <ul class="sub-menu">
-                            <li>
-                                <a href="ecommerce_index.html">
+                            <li data-action="baseinfo.price">
+                                <a href="~/baseinfo/price">
                                     <i class="icon-calendar"></i>
                                     气价信息
                                 </a>
                             </li>
                             <li>
-                                <a href="ecommerce_orders.html">
+                                <a href="#">
                                     <i class="icon-calendar"></i>
                                     气表参数
                                 </a>
                             </li>
                             <li>
-                                <a href="ecommerce_orders_view.html">
+                                <a href="#">
                                     <i class="icon-calendar"></i>
                                     气表信息
                                 </a>
@@ -160,43 +142,43 @@
                         </a>
                         <ul class="sub-menu">
                             <li>
-                                <a href="layout_horizontal_sidebar_menu.html">
+                                <a href="#">
                                     <i class="icon-calendar"></i>
                                     客户报装建档
                                 </a>
                             </li>
                             <li>
-                                <a href="index_horizontal_menu.html">
+                                <a href="#">
                                     <i class="icon-calendar"></i>
                                     集体报装建档
                                 </a>
                             </li>
                             <li>
-                                <a href="layout_horizontal_sidebar_menu.html">
+                                <a href="#">
                                     <i class="icon-calendar"></i>
                                     客户信息查询
                                 </a>
                             </li>
                             <li>
-                                <a href="index_horizontal_menu.html">
+                                <a href="#">
                                     <i class="icon-calendar"></i>
                                     停用
                                 </a>
                             </li>
                             <li>
-                                <a href="layout_horizontal_sidebar_menu.html">
+                                <a href="#">
                                     <i class="icon-calendar"></i>
                                     启用
                                 </a>
                             </li>
                             <li>
-                                <a href="index_horizontal_menu.html">
+                                <a href="#">
                                     <i class="icon-calendar"></i>
                                     过户
                                 </a>
                             </li>
                             <li>
-                                <a href="layout_horizontal_sidebar_menu.html">
+                                <a href="#">
                                     <i class="icon-calendar"></i>
                                     销户
                                 </a>
@@ -211,49 +193,49 @@
                         </a>
                         <ul class="sub-menu">
                             <li>
-                                <a href="ui_general.html">
+                                <a href="#">
                                     <i class="icon-calendar"></i>
                                     售气管理
                                 </a>
                             </li>
                             <li>
-                                <a href="ui_buttons.html">
+                                <a href="#">
                                     <i class="icon-calendar"></i>
                                     退气
                                 </a>
                             </li>
                             <li>
-                                <a href="ui_icons.html">
+                                <a href="#">
                                     <i class="icon-calendar"></i>
                                     非换表补气
                                 </a>
                             </li>
                             <li>
-                                <a href="ui_colors.html">
+                                <a href="#">
                                     <i class="icon-calendar"></i>
                                     换表
                                 </a>
                             </li>
                             <li>
-                                <a href="ui_typography.html">
+                                <a href="#">
                                     <i class="icon-calendar"></i>
                                     修表
                                 </a>
                             </li>
                             <li>
-                                <a href="ui_tabs_accordions_navs.html">
+                                <a href="#">
                                     <i class="icon-calendar"></i>
                                     换卡
                                 </a>
                             </li>
                             <li>
-                                <a href="ui_tree.html">
+                                <a href="#">
                                     <i class="icon-calendar"></i>
                                     补卡
                                 </a>
                             </li>
                             <li>
-                                <a href="ui_blockui.html">
+                                <a href="#">
                                     <i class="icon-calendar"></i>
                                     气卡回收
                                 </a>
@@ -269,73 +251,73 @@
                         </a>
                         <ul class="sub-menu">
                             <li>
-                                <a href="components_pickers.html">
+                                <a href="#">
                                     <i class="icon-calendar"></i>
                                     售气记录
                                 </a>
                             </li>
                             <li>
-                                <a href="components_dropdowns.html">
+                                <a href="#">
                                     <i class="icon-calendar"></i>
                                     错误上报记录
                                 </a>
                             </li>
                             <li>
-                                <a href="components_form_tools.html">
+                                <a href="#">
                                     <i class="icon-calendar"></i>
                                     气表上传记录
                                 </a>
                             </li>
                             <li>
-                                <a href="components_editors.html">
+                                <a href="#">
                                     <i class="icon-calendar"></i>
                                     指令记录
                                 </a>
                             </li>
                             <li>
-                                <a href="components_ion_sliders.html">
+                                <a href="#">
                                     <i class="icon-calendar"></i>
                                     退气记录
                                 </a>
                             </li>
                             <li>
-                                <a href="components_noui_sliders.html">
+                                <a href="#">
                                     <i class="icon-calendar"></i>
                                     补气记录
                                 </a>
                             </li>
                             <li>
-                                <a href="components_jqueryui_sliders.html">
+                                <a href="#">
                                     <i class="icon-calendar"></i>
                                     换表记录
                                 </a>
                             </li>
                             <li>
-                                <a href="components_knob_dials.html">
+                                <a href="#">
                                     <i class="icon-calendar"></i>
                                     换卡记录
                                 </a>
                             </li>
                             <li>
-                                <a href="components_editors.html">
+                                <a href="#">
                                     <i class="icon-calendar"></i>
                                     补卡记录
                                 </a>
                             </li>
                             <li>
-                                <a href="components_ion_sliders.html">
+                                <a href="#">
                                     <i class="icon-calendar"></i>
                                     气卡回收记录
                                 </a>
                             </li>
                             <li>
-                                <a href="components_noui_sliders.html">
+                                <a href="#">
                                     <i class="icon-calendar"></i>
                                     原客户信息记录
                                 </a>
                             </li>
                             <li>
-                                <a href="components_jqueryui_sliders.html">
+                                <a href="#">
                                     <i class="icon-calendar"></i>
                                     客户信息修改记录
                                 </a>
@@ -356,20 +338,21 @@
         <!-- END SIDEBAR -->
         <!-- BEGIN CONTENT -->
         <div class="page-content-wrapper">
-            <div class="page-content">
+            <div class="page-content">               
                 <!-- BEGIN PAGE HEADER-->
-                <h3 class="page-title">
-                    系统设置 <small>基本配置</small>
-                </h3>
                 <div class="page-bar">
                     <ul class="page-breadcrumb">
                         <li>
                             <i class="fa fa-home"></i>
-                            <a href="index.html">主页</a>
+                            <a href="~/system/index">主页</a>
                             <i class="fa fa-angle-right"></i>
                         </li>
                         <li>
                             <a href="#">系统设置</a>
+                            <i class="fa fa-angle-right"></i>
+                        </li>
+                        <li>
+                            <a href="#">@ViewBag.Title</a>
                         </li>
                     </ul>
                 </div>
@@ -380,7 +363,6 @@
                     @RenderBody()
                 </div>
             </div>
-
         </div>
         <!-- END CONTAINER -->
         <!-- BEGIN FOOTER -->
@@ -392,27 +374,30 @@
                 <i class="icon-arrow-up"></i>
             </div>
         </div>
-        <!-- END FOOTER -->
-        <!--[if lt IE 9]>
-        <script src="../../assets/global/plugins/respond.min.js"></script>
-        <script src="../../assets/global/plugins/excanvas.min.js"></script>
-        <![endif]-->
-        @Scripts.Render("~/bundles/jquery")
-        @Scripts.Render("~/bundles/commonJs")
-        @RenderSection("scripts", required: false)
-        <!-- END PAGE LEVEL SCRIPTS -->
-        <script>
-            $(document).ready(function () {
-                Layout.init(); // init layout
-                QuickSidebar.init(); // init quick sidebar
-                Index.init();
-                $(".page-sidebar-menu").on("click", ".sub-menu li", function () {
-                    $(this).siblings("active").removeClass("active");
-                    $(this).addClass("active").closest().addClass("active");
-                });
-            });
-        </script>
-        <!-- END JAVASCRIPTS -->
+    </div>
+    <!-- END FOOTER -->
+    <!--[if lt IE 9]>
+    <script src="../../assets/global/plugins/respond.min.js"></script>
+    <script src="../../assets/global/plugins/excanvas.min.js"></script>
+    <![endif]-->
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/commonJs")
+    @RenderSection("scripts", required: false)
+    <!-- END PAGE LEVEL SCRIPTS -->
+    <script>
+        $('.page-content').css("min-height",$("body").height());
+        $(document).ready(function () {
+            var curController = "@ViewContext.RouteData.Values["controller"].ToString()",
+            curAction = "@ViewContext.RouteData.Values["action"].ToString()";
+            $('[data-controller="' + curController.toLowerCase() + '"]').addClass('start active open');
+            $('[data-action="' + curController.toLowerCase() + '.' + curAction.toLowerCase() + '"]').addClass('active');
+            Layout.init(); // init layout
+            QuickSidebar.init(); // init quick sidebar
+            Index.init();
+        });
+
+    </script>
+    <!-- END JAVASCRIPTS -->
 </body>
 <!-- END BODY -->
 </html>

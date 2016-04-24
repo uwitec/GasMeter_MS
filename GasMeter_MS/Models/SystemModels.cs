@@ -12,14 +12,18 @@ namespace GasMeter_MS.Models
         [Display(Name = "ID")]
         public int Id { get; set; }
 
-        [Required]
         [Display(Name = "站点名称")]
         [StringLength(20, ErrorMessage = "{0} 最多包含 20 个字符。")]
+        [Required(ErrorMessage = "请输入{0}")]
         public string SiteName { get; set; }
 
+        [Required(ErrorMessage = "请输入{0}")]
+        [RegularExpression(@"[0-9]+", ErrorMessage = "请输入整数")]
         [Display(Name = "读写气卡操作的端口号")]
         public int Port { get; set; }
 
+        [Required(ErrorMessage = "请输入{0}")]
+        [RegularExpression(@"[0-9]+", ErrorMessage = "请输入整数")]
         [Display(Name = "比特率")]
         public int Baud { get; set; }
 
@@ -37,7 +41,7 @@ namespace GasMeter_MS.Models
         public int Id { get; set; }
 
         [Required]
-        [Display(Name = "选项名（价格类型、用户状态等）")]
+        [Display(Name = "选项类型")]
         [StringLength(20, ErrorMessage = "{0} 最多包含 20 个字符。")]
         public string Key { get; set; }
 
@@ -48,7 +52,23 @@ namespace GasMeter_MS.Models
         [Display(Name = "备注")]
         public string BMemo{ get; set; }
     }
+    //
+    //树形结构数据
+    public class Tree
+    {
+        [Required]
+        [Key]
+        [Display(Name = "ID")]
+        public int Id { get; set; }
 
+        [Required]
+        [Display(Name = "树类型名称")]
+        [StringLength(20, ErrorMessage = "{0} 最多包含 20 个字符。")]
+        public string Name { get; set; }
+
+        [Display(Name = "json字符串")]
+        public string JsonString { get; set; }
+    }
     //
     //主菜单配置表
     public class Menu

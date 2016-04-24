@@ -1,0 +1,116 @@
+﻿@model GasMeter_MS.Models.Tree
+
+@{
+    ViewBag.Title = "组织机构管理 ";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section Css{
+    <link rel="stylesheet" type="text/css" href="~/Content/plugins/jstree/dist/themes/default/style.css" />
+}
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(model => model.Id)
+    @Html.HiddenFor(model => model.Name)
+    @Html.HiddenFor(model => model.JsonString)
+
+}
+<div class="col-sm-12 col-md-10">
+    <div class="portlet red-pink box" ng-controller="BranchTreeController" >
+        <div class="portlet-title">
+            <div class="caption">
+                <i class="fa fa-cogs"></i>组织机构管理
+            </div>
+            <div class="tools">
+                <a href="javascript:;" class="collapse" data-original-title="" title="">
+                </a>
+                <a href="#portlet-config" data-toggle="modal" class="config" data-original-title="" title="">
+                </a>
+                <a href="javascript:;" class="reload" data-original-title="" title="">
+                </a>
+            </div>
+        </div>
+        <div class="portlet-body">
+            <div id="tree_3" class="tree-demo">
+            </div>
+            <div class="alert alert-success  no-margin margin-top-10">
+               已处于编辑态！支持拖动和右键菜单。
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script src="~/Content/plugins/jstree/dist/jstree.js"></script>
+    <script>
+        angular.module("app", []).controller("BranchTreeController", function ($scope) {
+            $scope.name = "haha!";
+        });
+        $("#tree_3").jstree({
+            "core": {
+                "themes": {
+                    "responsive": false
+                },
+                // so that create works
+                "check_callback": true,
+                'data': [{
+                    "text": "公司名称",
+                    "icon": "fa fa-institution  icon-state-success",
+                    "children": [{
+                        "text": "市场部",
+                        "icon": "fa fa-building  icon-state-danger",
+                        "state": {
+                            "selected": true
+                        }
+                    }, {
+                        "text": "人事部",
+                        "icon": "fa fa-building  icon-state-danger"
+                    }, {
+                        "text": "财务部",
+                        "icon": "fa fa-building icon-state-success",
+                        "state": {
+                            "opened": true
+                        },
+                        "children": [
+                            { "text": "子部门1", "icon": "fa fa-child icon-state-warning" }
+                        ]
+                    }, {
+                        "text": "后勤部",
+                        "icon": "fa fa-building icon-state-warning"
+                    }, {
+                        "text": "工程部",
+                        "icon": "fa fa-building icon-state-success",
+                        "state": {
+                            "disabled": true
+                        }
+                    }, {
+                        "text": "营业厅",
+                        "icon": "fa fa-building icon-state-danger",
+                        "children": [
+                            { "text": "营业网点 1", "icon": "fa fa-child icon-state-warning" },
+                            { "text": "营业网点 2", "icon": "fa fa-child icon-state-success" },
+                            { "text": "营业网点 3", "icon": "fa fa-child icon-state-default" },
+                            { "text": "营业网点 4", "icon": "fa fa-child icon-state-danger" },
+                            { "text": "营业网点 5", "icon": "fa fa-child icon-state-info" }
+                        ]
+                    }]
+                }, {
+                    "text": "未命名",
+                    "icon": "fa fa-institution  icon-state-success"
+                }]
+            },
+            "types": {
+                "default": {
+                    "icon": "fa fa-certificate icon-state-warning icon-lg"
+                },
+                "file": {
+                    "icon": "fa fa-file fa-building-o icon-lg"
+                }
+            },
+            "state": { "key": "demo2" },
+            "plugins": ["contextmenu", "dnd", "state", "types"],
+        });
+        console.log($("#tree_3").jstree().get_json('#j1_1'));
+    </script>
+}

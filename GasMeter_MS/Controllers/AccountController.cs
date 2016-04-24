@@ -55,7 +55,7 @@ namespace GasMeter_MS.Controllers
         //
         // GET: /Account/Login
         [AllowAnonymous]
-        public ActionResult Login(string returnUrl)
+        public ActionResult Login(string returnUrl="~/system/index")
         {
             ViewBag.ReturnUrl = returnUrl;
             return View();
@@ -85,6 +85,8 @@ namespace GasMeter_MS.Controllers
                 case SignInStatus.RequiresVerification:
                     return RedirectToAction("SendCode", new { ReturnUrl = returnUrl, RememberMe = model.RememberMe });
                 case SignInStatus.Failure:
+                    ViewBag.message = "登陆失败，用户名或密码错误";
+                    return View(model);
                 default:
                     ModelState.AddModelError("", "无效的登录尝试。");
                     return View(model);
@@ -151,7 +153,7 @@ namespace GasMeter_MS.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+                var user = new ApplicationUser { Name=model.Name,UserName = model.Email, Email = model.Email };
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
@@ -163,9 +165,10 @@ namespace GasMeter_MS.Controllers
                     // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
                     // await UserManager.SendEmailAsync(user.Id, "确认你的帐户", "请通过单击 <a href=\"" + callbackUrl + "\">這裏</a>来确认你的帐户");
 
-                    return RedirectToAction("Index", "Home");
+                    return RedirectToAction("Index", "System");
                 }
                 AddErrors(result);
+                ViewBag.message = "邮箱已被注册";
             }
 
             // 如果我们进行到这一步时某个地方出错，则重新显示表单
@@ -392,7 +395,7 @@ namespace GasMeter_MS.Controllers
         public ActionResult LogOff()
         {
             AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Index", "System");
         }
 
         //
@@ -449,7 +452,7 @@ namespace GasMeter_MS.Controllers
             {
                 return Redirect(returnUrl);
             }
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Index", "System");
         }
 
         internal class ChallengeResult : HttpUnauthorizedResult

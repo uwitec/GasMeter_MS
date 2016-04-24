@@ -26,6 +26,7 @@ namespace GasMeter_MS
                       "~/Content/js/metronic.js",
                       "~/Content/js/layout.js",
                       "~/Content/js/quick-sidebar.js",
+                      "~/Scripts/angular.min.js",
                       "~/Content/js/index.js"));
             bundles.Add(new StyleBundle("~/Content/commonCss").Include(
                      "~/Content/bootstrap.min.css",

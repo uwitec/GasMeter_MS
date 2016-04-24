@@ -5,8 +5,8 @@ namespace GasMeter_MS.Models
 {
     public class ExternalLoginConfirmationViewModel
     {
-        [Required]
-        [Display(Name = "电子邮件")]
+        [Display(Name = "邮箱")]
+        [EmailAddress]
         public string Email { get; set; }
     }
 
@@ -25,10 +25,10 @@ namespace GasMeter_MS.Models
 
     public class VerifyCodeViewModel
     {
-        [Required]
+        [Required(ErrorMessage = "请输入{0}")]
         public string Provider { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "请输入{0}")]
         [Display(Name = "代码")]
         public string Code { get; set; }
         public string ReturnUrl { get; set; }
@@ -41,19 +41,19 @@ namespace GasMeter_MS.Models
 
     public class ForgotViewModel
     {
-        [Required]
+        [Required(ErrorMessage = "请输入{0}")]
         [Display(Name = "电子邮件")]
         public string Email { get; set; }
     }
 
     public class LoginViewModel
     {
-        [Required]
-        [Display(Name = "电子邮件")]
+        [Display(Name = "邮箱")]
         [EmailAddress]
         public string Email { get; set; }
 
-        [Required]
+
+        [Required(ErrorMessage = "请输入{0}")]
         [DataType(DataType.Password)]
         [Display(Name = "密码")]
         public string Password { get; set; }
@@ -64,12 +64,16 @@ namespace GasMeter_MS.Models
 
     public class RegisterViewModel
     {
-        [Required]
+        [Required(ErrorMessage = "请输入{0}")]
+        [StringLength(50, ErrorMessage = "{0} 必须至少包含 {2} 个字符。", MinimumLength = 2)]
+        [Display(Name = "真实姓名")]
+        public string Name { get; set; }
+
+        [Display(Name = "邮箱")]
         [EmailAddress]
-        [Display(Name = "电子邮件")]
         public string Email { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "请输入{0}")]
         [StringLength(100, ErrorMessage = "{0} 必须至少包含 {2} 个字符。", MinimumLength = 6)]
         [DataType(DataType.Password)]
         [Display(Name = "密码")]
@@ -83,12 +87,12 @@ namespace GasMeter_MS.Models
 
     public class ResetPasswordViewModel
     {
-        [Required]
+        [Required(ErrorMessage = "请输入{0}")]
         [EmailAddress]
         [Display(Name = "电子邮件")]
         public string Email { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "请输入{0}")]
         [StringLength(100, ErrorMessage = "{0} 必须至少包含 {2} 个字符。", MinimumLength = 6)]
         [DataType(DataType.Password)]
         [Display(Name = "密码")]
@@ -104,7 +108,7 @@ namespace GasMeter_MS.Models
 
     public class ForgotPasswordViewModel
     {
-        [Required]
+        [Required(ErrorMessage = "请输入{0}")]
         [EmailAddress]
         [Display(Name = "电子邮件")]
         public string Email { get; set; }

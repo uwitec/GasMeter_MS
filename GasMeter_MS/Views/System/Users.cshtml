@@ -1,0 +1,125 @@
+﻿@model IEnumerable<GasMeter_MS.Models.ApplicationUser>
+
+@{
+    ViewBag.Title = "用户管理";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section Css{
+    <link href="~/Content/plugins/select2/select2.css" rel="stylesheet" />
+    <link href="~/Content/plugins/datatables/plugins/bootstrap/dataTables.bootstrap.css" rel="stylesheet" />
+}
+
+<!-- BEGIN PAGE CONTENT-->
+<div class="row">
+    <div class="col-md-12">
+        <!-- BEGIN EXAMPLE TABLE PORTLET-->
+        <div class="portlet box red-pink">
+            <div class="portlet-title">
+                <div class="caption">
+                    <i class="fa fa-edit"></i>人员信息管理
+                </div>
+                <div class="tools">
+                    <div class="btn-group pull-right">
+                        <div class="btn-group">
+                            <button id="sample_editable_1_new" class="btn green-seagreen">
+                                添加用户 <i class="fa fa-plus"></i>
+                            </button>
+                        </div>
+                        <button class="btn dropdown-toggle font-green-sharp" data-toggle="dropdown">
+                            导出 <i class="fa fa-angle-down"></i>
+                        </button>
+                        <ul class="dropdown-menu pull-right">
+                            <li>
+                                <a href="#">
+                                    导出为 Excel
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    导出为 PDF
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="portlet-body">
+                <table class="table table-striped table-bordered table-advance table-hover" id="sample_editable_1">
+                    <thead style="background: #DDD;">
+                        <tr>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Name)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Email)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Sex)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Tel)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Type)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Memo)
+                            </th>
+
+                            <th></th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Name)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Email)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Sex)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Tel)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Type)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Memo)
+                                </td>
+                                <td>
+                                    <a href="javascript:;" class="btn default btn-xs purple " data-id="@item.Id">
+                                        <i class="fa fa-edit"></i> 编辑
+                                    </a>
+                                </td>
+                                <td>
+                                    <a href="javascript:;" data-id="@item.Id" class="btn default btn-xs purple delete">
+                                        <i class="icon icon-trash"></i> 删除
+                                    </a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <!-- END EXAMPLE TABLE PORTLET-->
+    </div>
+</div>
+<!-- END PAGE CONTENT -->
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script src="~/Content/plugins/select2/select2.min.js"></script>
+    <script src="~/Content/plugins/datatables/media/js/jquery.dataTables.min.js"></script>
+    <script src="~/Content/plugins/datatables/plugins/bootstrap/dataTables.bootstrap.js"></script>
+    <script src="~/Content/pages/system_users/table-editable.js"></script>
+    <script>
+        TableEditable.init();
+    </script>
+}
+

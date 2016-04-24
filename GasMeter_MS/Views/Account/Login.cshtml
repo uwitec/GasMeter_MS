@@ -18,7 +18,7 @@
     @Styles.Render("~/Content/commonCss")
     @Styles.Render("~/Content/layoutCss")
     @Scripts.Render("~/bundles/modernizr")
-    <link href="~/Content/pages/login2.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/pages/login/css/login2.css" rel="stylesheet" type="text/css" />
     <link href="~/Content/css/custom.css" rel="stylesheet" type="text/css" />
     <link rel="shortcut icon" href="~/content/favicon.ico" />
 </head>
@@ -39,24 +39,27 @@
         @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "login-form", role = "form" }))
         {
             @Html.AntiForgeryToken()
+            <span class="text-danger">@ViewBag.message</span>
             <div class="form-title text-center">
                 <span class="form-title">欢迎使用</span>
             </div>
             <div class="alert alert-danger display-hide">
                 <button class="close" data-close="alert"></button>
                 <span>
-                    输入用户名和密码
+                    输入邮箱地址和密码登陆 
                 </span>
             </div>
             <div class="form-group">
                 <!--ie8, ie9 does not support html5 placeholder, so we just show field title for that-->
-                <label class="control-label visible-ie8 visible-ie9">用户名</label>
-                @Html.PasswordFor(m => m.Password, new { @class = "form-control form-control-solid placeholder-no-fix", autocomplete = "off", placeholder = "用户名", name = "username" })
+                <label class="control-label visible-ie8 visible-ie9">邮箱</label>
+                @Html.TextBoxFor(m => m.Email, new { @class = "form-control form-control-solid placeholder-no-fix", autocomplete = "off", placeholder = "邮箱地址", name = "username" })
+                @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
             </div>
             <div class="form-group">
                 <label class="control-label visible-ie8 visible-ie9">密码</label>
                 @Html.PasswordFor(m => m.Password, new { @class = "form-control form-control-solid placeholder-no-fix", autocomplete = "off", placeholder = "密码", name = "password" })
-            </div>
+                @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+             </div>
             <div class="form-actions">
                 <button type="submit" class="btn btn-primary btn-block uppercase">登录</button>
             </div>
@@ -78,14 +81,11 @@
     <!-- END LOGIN FORM -->
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/commonJs")
-    <script src="~/content/pages/scripts/login.js" type="text/javascript"></script>
-    <script src="~/Content/js/jquery.validate.min.js"></script>
+    @Scripts.Render("~/bundles/jqueryval")
     <script>
         jQuery(document).ready(function () {
             Metronic.init(); // init metronic core components
             Layout.init(); // init current layout
-            Login.init();
-          //  Demo.init();
         });
     </script>
     <!-- END JAVASCRIPTS -->
