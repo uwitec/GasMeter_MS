@@ -167,8 +167,10 @@ namespace GasMeter_MS.Controllers
 
                     return RedirectToAction("Index", "System");
                 }
-                AddErrors(result);
-                ViewBag.message = "邮箱已被注册";
+                else{
+                    ViewBag.errors = result.Errors;
+                }
+                
             }
 
             // 如果我们进行到这一步时某个地方出错，则重新显示表单

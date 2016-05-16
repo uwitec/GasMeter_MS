@@ -86,16 +86,7 @@ namespace GasMeter_MS.Models
         //根据身份自动加入角色
         public void AutoAddUserToRole(string userId, string name)
         {
-            if (name == "超级管理员")                  //注册时根据身份赋予权限
-                AddUserToRole(userId, "SAdmin");
-            if (name == "管理员")
-                AddUserToRole(userId, "Admin");
-            if (name == "煤矿企业")
-                AddUserToRole(userId, "煤矿企业权限");
-            if (name == "培训部门")
-                AddUserToRole(userId, "培训部门权限");
-            if (name == "监察监督部门")
-                AddUserToRole(userId, "监察监督权限");
+            
 
         }
         // 清除使用者的角色设定
